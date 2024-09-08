@@ -1,8 +1,13 @@
 import readContacts from '../utils/readContacts';
 
-export const countContacts = (async () => {
-  const contacts = await readContacts();
-  console.log(`Total contacts: ${contacts.length}`);
-})();
+export const countContacts = async () => {
+  try {
+    const contacts = await readContacts();
+    return contacts.length;
+  } catch (err) {
+    console.error('Failed counting contacts', err);
+    return 0;
+  }
+};
 
 console.log(await countContacts());
